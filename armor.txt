@@ -1,0 +1,11 @@
+Insured
+Weight: 3 Stones
+Brittle
+Spell Damage Increase 12%
+Strength Requirement 10
+Physical Resist 12%
+Fire Resist 17%
+Cold Resist 21%
+Poison Resist 17%
+Energy Resist 17%
+Durability 250 / 255

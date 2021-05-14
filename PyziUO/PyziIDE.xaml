@@ -1,0 +1,36 @@
+﻿<Window x:Class="PyziUO.PyziIDE"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PyziUO"
+        mc:Ignorable="d"
+        Title="Pyzi IDE" Height="470" Width="650" Icon="Resources/icon_clean.ico"
+        ResizeMode="CanMinimize">
+    <Window.Background>
+        <ImageBrush ImageSource="Resources/splash.jpg"/>
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="409"/>
+        </Grid.RowDefinitions>
+        <ToolBarPanel Grid.Row="0" ClipToBounds="True" Background="#3F000000">
+            <ToolBar x:Name="tBar" Background="{x:Null}" ToolBarTray.IsLocked="True" Foreground="Black">
+                <Button x:Name="btnSave" Content="Save" Foreground="White" Padding="10,2" Click="btnSave_Click" ToolBar.OverflowMode="Never"/>
+                <Button x:Name="btnSaveAs" Content="Save As" Foreground="White" Padding="10,2" Click="btnSaveAs_Click" ToolBar.OverflowMode="Never"/>
+                <Button x:Name="btnLoad" Content="Load" Foreground="White" Padding="10,2" ToolBar.OverflowMode="Never" Click="btnLoad_Click"/>
+                <Button x:Name="btnClear" Content="Clear" Foreground="White" Padding="10,2" ToolBar.OverflowMode="Never" Click="btnClear_Click"/>
+            </ToolBar>
+        </ToolBarPanel>
+        <StackPanel x:Name="pnlEditor" Grid.Row="1">
+            <avalonEdit:TextEditor x:Name="scriptEditor" 
+                xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                FontFamily="Consolas" FontSize="10pt" Background="{x:Null}" 
+                ScrollViewer.CanContentScroll="True"
+                HorizontalScrollBarVisibility="Auto" 
+                VerticalScrollBarVisibility="Hidden"
+                ShowLineNumbers="True" Foreground="#FFF2F2F2" Height="400" KeyDown="scriptEditor_KeyDown"/>
+        </StackPanel>
+    </Grid>
+</Window>

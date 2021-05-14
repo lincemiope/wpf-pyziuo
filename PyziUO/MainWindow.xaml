@@ -1,0 +1,102 @@
+﻿<Window x:Class="PyziUO.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="PyziUO" Height="450" Width="675" ResizeMode="CanMinimize" Foreground="{DynamicResource TitleColor}" Icon="Resources/icon_clean.ico">
+    <Window.Background>
+        <ImageBrush ImageSource="Resources/splash.jpg"/>
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="colBody" Width="440"/>
+            <ColumnDefinition x:Name="colSide" Width="235"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="rowMenu" Height="25"/>
+            <RowDefinition x:Name="rowActions" Height="30"/>
+            <RowDefinition x:Name="rowBody" Height="*"/>
+            <!--<RowDefinition x:Name="rowStatus" Height="20"/>-->
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="MenuBtns" Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Row="0" Background="{DynamicResource BackColor}">
+            <Menu BorderBrush="{DynamicResource EmphaBackColor}">
+                <MenuItem x:Name="mFile" Header="_File">
+                    <MenuItem x:Name="mExit" Header="_Exit" Click="mExit_Click"/>
+                </MenuItem>
+                <MenuItem x:Name="mTools" Header="_Tools">
+                    <MenuItem x:Name="mEntityInfo" Header="_Entity Info" Click="btnEntityInfo_Click"/>
+                    <MenuItem x:Name="mHideItem" Header="_Hide Item" Click="btnHideItem_Click"/>
+                    <!--<MenuItem x:Name="mTileInfo" Header="_Tile Info" Click="btnTileInfo_Click"/>-->
+                </MenuItem>
+                <MenuItem x:Name="mHelp" Header="Help">
+                    <MenuItem x:Name="mWiki" Header="_Docs" Click="mWiki_Click"/>
+                </MenuItem>
+                <MenuItem x:Name="mNewVer" Header="_New Version" Visibility="Hidden" Click="mNewVer_Click"/>
+            </Menu>
+        </StackPanel>
+        <Grid x:Name="pnlAction" Grid.Column="0" Grid.Row="1" Background="{DynamicResource HighlightedBackgroundBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center" Grid.Column="0" HorizontalAlignment="Center">
+                <Image x:Name="btnNew" Source="Resources/newbtn.png" Style="{StaticResource btnActions}" Margin="0,0,5,0" MouseUp="btnNew_MouseUp"/>
+                <Image x:Name="btnEdit" Source="Resources/editbtn.png" Style="{StaticResource btnActions}" Margin="5,0" MouseUp="btnEdit_MouseUp"/>
+                <Image x:Name="btnPlay" Source="Resources/playbtn.png" Style="{StaticResource btnActions}" Margin="5,0" MouseUp="btnPlay_MouseUp"/>
+                <Image x:Name="btnReload" Source="Resources/reloadbtn.png" Style="{StaticResource btnActions}" Margin="5,0" MouseUp="btnRefresh_Click"/>
+                <Image x:Name="btnStop" Source="Resources/stopbtn.png" Style="{StaticResource btnActions}" Margin="5,0,0,0" MouseUp="btnStop_MouseUp"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                <Label x:Name="lblState" Content="Status:" Foreground="{DynamicResource TitleColor}"/>
+                <Label x:Name="lblStateRecv" Content="Idle" Foreground="{DynamicResource SubTitleColor}" Margin="10,0,0,0"/>
+            </StackPanel>
+        </Grid>
+        <TreeView x:Name="sideTree" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Background="{DynamicResource MenusBackColor}" 
+                  Foreground="#FFEEEEEE" BorderBrush="{DynamicResource EmphaBackColor}" 
+                  ScrollViewer.CanContentScroll="True" 
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+        <WrapPanel x:Name="Scripts" Grid.Column="0" Grid.Row="2">
+            <ListView x:Name="listScripts" Background="{DynamicResource MenusBackColor}" 
+                      Foreground="{DynamicResource SubTitleColor}" 
+                      BorderBrush="{DynamicResource EmphaBackColor}" 
+                      HorizontalContentAlignment="Stretch"   
+                      VerticalContentAlignment="Stretch" BorderThickness="0"
+                      SelectionChanged="listScripts_SelectionChanged"
+                      ScrollViewer.CanContentScroll="True"
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="true" >
+                                <Setter Property="Foreground" Value="{StaticResource TitleColor}" />
+                                <Setter Property="Background" Value="{x:Null}" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Foreground" Value="{StaticResource TitleColor}" />
+                                <Setter Property="Background" Value="{x:Null}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn x:Name="sName" Header="File Name" Width="160" HeaderContainerStyle="{StaticResource GVHeader}" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn x:Name="sSize" Header="Size" Width="98" HeaderContainerStyle="{StaticResource GVHeader}" DisplayMemberBinding="{Binding Size}"/>
+                        <GridViewColumn x:Name="sLModify" Header="Last Modify" Width="180" HeaderContainerStyle="{StaticResource GVHeader}" DisplayMemberBinding="{Binding Modify}"/>
+                        <!--<GridViewColumn x:Name="sAction" Header="State" Width="90" HeaderContainerStyle="{StaticResource GVHeader}" DisplayMemberBinding="{Binding State}"/>
+                        <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="PLAY" Click="btnClick" CommandParameter="{Binding}" Style="{StaticResource ActionButton}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>-->
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </WrapPanel>
+    </Grid>
+</Window>

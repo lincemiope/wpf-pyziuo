@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{961C8371-E3AB-4E3A-BD25-42154CF772B7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PyziWrap</RootNamespace>
+    <AssemblyName>PyziWrap</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataTypes\Container.cs" />
+    <Compile Include="DataTypes\FoundItem.cs" />
+    <Compile Include="DataTypes\JournalEntry.cs" />
+    <Compile Include="DataTypes\JournalScan.cs" />
+    <Compile Include="DataTypes\ItemProp.cs" />
+    <Compile Include="DataTypes\PropertyInfo.cs" />
+    <Compile Include="DataTypes\SingleSop.cs" />
+    <Compile Include="DataTypes\SingleSot.cs" />
+    <Compile Include="DataTypes\Skill.cs" />
+    <Compile Include="DataTypes\SmallBod.cs" />
+    <Compile Include="DataTypes\Stats.cs" />
+    <Compile Include="DataTypes\Tile.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="DLL.cs" />
+    <Compile Include="Lists\EGump.cs" />
+    <Compile Include="Lists\ESkill.cs" />
+    <Compile Include="Lists\ESpell.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ClientMacros.cs" />
+    <Compile Include="GameVars.cs" />
+    <Compile Include="SkillMethods.cs" />
+    <Compile Include="Wrapper.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Globals.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
